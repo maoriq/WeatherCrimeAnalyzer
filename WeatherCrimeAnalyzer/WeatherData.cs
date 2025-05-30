@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace WeatherCrimeAnalyzer
 {
-    internal class WeatherData
+    public class WeatherData
     {
+        public DateTime Date { get; set; }
+        public double MinTemp { get; set; }
+        public double MaxTemp { get; set; }
+        public double AvgTemp { get; set; }
+        public string Description { get; set; }
     }
+
 }
