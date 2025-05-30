@@ -10,22 +10,11 @@ using System.Windows.Forms;
 
 namespace WeatherCrimeAnalyzer
 {
-    public partial class Form1 : Form
+    public partial class CrimeForm : Form
     {
-        public Form1()
+        public CrimeForm()
         {
             InitializeComponent();
-        }
-
-        private void btnCrimeForm_Click(object sender, EventArgs e)
-        {
-            CrimeForm form = new CrimeForm();
-            form.Show();
-        }
-
-        private void btnWeatherForm_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
