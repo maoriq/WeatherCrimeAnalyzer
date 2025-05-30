@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnLoad = new System.Windows.Forms.Button();
@@ -46,16 +46,16 @@
             // 
             // chart1
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart1.Legends.Add(legend6);
-            this.chart1.Location = new System.Drawing.Point(423, 28);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(504, 28);
             this.chart1.Name = "chart1";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chart1.Series.Add(series6);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(564, 440);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -67,14 +67,14 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(354, 202);
+            this.dataGridView1.Size = new System.Drawing.Size(459, 202);
             this.dataGridView1.TabIndex = 1;
             // 
             // btnLoad
             // 
             this.btnLoad.Location = new System.Drawing.Point(31, 251);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(354, 30);
+            this.btnLoad.Size = new System.Drawing.Size(459, 30);
             this.btnLoad.TabIndex = 2;
             this.btnLoad.Text = "Загрузить CSV\n";
             this.btnLoad.UseVisualStyleBackColor = true;
@@ -84,7 +84,7 @@
             // 
             this.btnChart.Location = new System.Drawing.Point(31, 300);
             this.btnChart.Name = "btnChart";
-            this.btnChart.Size = new System.Drawing.Size(354, 30);
+            this.btnChart.Size = new System.Drawing.Size(459, 30);
             this.btnChart.TabIndex = 3;
             this.btnChart.Text = "Построить график";
             this.btnChart.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@
             // 
             this.btnAnalyze.Location = new System.Drawing.Point(31, 347);
             this.btnAnalyze.Name = "btnAnalyze";
-            this.btnAnalyze.Size = new System.Drawing.Size(354, 30);
+            this.btnAnalyze.Size = new System.Drawing.Size(459, 30);
             this.btnAnalyze.TabIndex = 4;
             this.btnAnalyze.Text = " Анализ снижения";
             this.btnAnalyze.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             // 
             // textBoxN
             // 
-            this.textBoxN.Location = new System.Drawing.Point(309, 399);
+            this.textBoxN.Location = new System.Drawing.Point(414, 399);
             this.textBoxN.Name = "textBoxN";
             this.textBoxN.Size = new System.Drawing.Size(75, 22);
             this.textBoxN.TabIndex = 6;
@@ -120,10 +120,11 @@
             // 
             this.btnForecast.Location = new System.Drawing.Point(30, 438);
             this.btnForecast.Name = "btnForecast";
-            this.btnForecast.Size = new System.Drawing.Size(354, 30);
+            this.btnForecast.Size = new System.Drawing.Size(459, 30);
             this.btnForecast.TabIndex = 7;
             this.btnForecast.Text = "Построить прогноз";
             this.btnForecast.UseVisualStyleBackColor = true;
+            this.btnForecast.Click += new System.EventHandler(this.btnForecast_Click);
             // 
             // openFileDialog1
             // 
@@ -133,7 +134,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1017, 590);
+            this.ClientSize = new System.Drawing.Size(1098, 504);
             this.Controls.Add(this.btnForecast);
             this.Controls.Add(this.textBoxN);
             this.Controls.Add(this.label1);

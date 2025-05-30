@@ -94,51 +94,112 @@ namespace WeatherCrimeAnalyzer
         // Прогнозирование
         private List<(int year, double value)> CalculateMovingAverage(List<int> values, int n, int startYear)
         {
-            List<(int, double)> result = new List<(int, double)>();
-            var queue = new Queue<int>(values.Take(n));
+            var result = new List<(int year, double value)>();
+
+            if (values.Count < n)
+                return result;
+
+            // Используем double
+            var queue = new Queue<double>(values.Take(n).Select(v => (double)v));
 
             for (int i = 0; i < n; i++)
             {
                 double avg = queue.Average();
-                result.Add((startYear + values.Count + i, avg));
-                queue.Dequeue();
-                queue.Enqueue((int)Math.Round(avg));
+                int year = startYear + values.Count + i;
+                result.Add((year, avg));
+
+                queue.Dequeue();   // удаляем самое старое значение
+                queue.Enqueue(avg); // добавляем новое среднее, не округляя
             }
 
             return result;
         }
 
-        private void btnForecast_Click(object sender, EventArgs e)
-        { 
-                chart1.Series.Clear();
 
-                string type = "Theft";
-                int n = int.Parse(textBoxN.Text);
+        private void btnForecast_Click(object sender, EventArgs e)
+        {
+            chart1.Series.Clear();
+
+            if (string.IsNullOrWhiteSpace(textBoxN.Text))
+            {
+                MessageBox.Show("Введите количество лет для прогноза (N).", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(textBoxN.Text, out int n) || n <= 0)
+            {
+                MessageBox.Show("Введите положительное целое число для N.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (crimes == null || crimes.Count == 0)
+            {
+                MessageBox.Show("Сначала загрузите данные.");
+                return;
+            }
+
+            if (n > crimes.Count)
+            {
+                MessageBox.Show($"Слишком большое значение N. У вас только {crimes.Count} лет данных.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var crimeTypes = new[] { "Theft", "Murder", "Fraud" };
+            var years = crimes.Select(c => c.Year).ToList();
+            int startYear = years.First();
+
+            foreach (var type in crimeTypes)
+            {
+                if (!crimes[0].CrimeByType.ContainsKey(type))
+                {
+                    MessageBox.Show($"Тип преступности '{type}' не найден в данных.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    continue;
+                }
 
                 var values = crimes.Select(c => c.CrimeByType[type]).ToList();
-                var years = crimes.Select(c => c.Year).ToList();
 
+                // Исходная линия
                 var series = chart1.Series.Add(type);
                 series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                series.Color = GetBaseColor(type); // разные цвета
+                series.BorderWidth = 2;
 
                 for (int i = 0; i < years.Count; i++)
                 {
                     series.Points.AddXY(years[i], values[i]);
                 }
 
-                var forecast = CalculateMovingAverage(values, n, years.First());
-
-                var forecastSeries = chart1.Series.Add("Прогноз");
+                // Прогнозная линия
+                var forecast = CalculateMovingAverage(values, n, startYear);
+                var forecastSeries = chart1.Series.Add($"{type} (прогноз)");
                 forecastSeries.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-                forecastSeries.Color = System.Drawing.Color.Red;
+                forecastSeries.Color = series.Color;
+                forecastSeries.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+                forecastSeries.BorderWidth = 2;
 
                 foreach (var point in forecast)
                 {
                     forecastSeries.Points.AddXY(point.year, point.value);
                 }
             }
-
+        }
+        private Color GetBaseColor(string type)
+        {
+            switch (type)
+            {
+                case "Theft":
+                    return Color.Blue;
+                case "Murder":
+                    return Color.Green;
+                case "Fraud":
+                    return Color.Orange;
+                default:
+                    return Color.Gray;
+            }
         }
 
+
     }
+
+}
 
