@@ -19,12 +19,14 @@ namespace WeatherCrimeAnalyzer
 
         private void btnCrimeForm_Click(object sender, EventArgs e)
         {
-
+            CrimeForm form = new CrimeForm();
+            form.Show();
         }
 
         private void btnWeatherForm_Click(object sender, EventArgs e)
         {
-
+            WeatherForm weatherForm = new WeatherForm();
+            weatherForm.Show();
         }
     }
 }
