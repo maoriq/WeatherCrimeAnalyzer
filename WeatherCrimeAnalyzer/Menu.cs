@@ -24,7 +24,8 @@ namespace WeatherCrimeAnalyzer
 
         private void btnWeatherForm_Click(object sender, EventArgs e)
         {
-
+            WeatherForm weatherForm = new WeatherForm();
+            weatherForm.Show();
         }
     }
 }
