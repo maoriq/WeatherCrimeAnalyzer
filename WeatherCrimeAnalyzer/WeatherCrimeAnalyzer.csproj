@@ -47,6 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrimeData.cs" />
+    <Compile Include="CrimeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrimeForm.Designer.cs">
+      <DependentUpon>CrimeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +71,9 @@
       <DependentUpon>WeatherForm.cs</DependentUpon>
     </Compile>
     <Compile Include="WeatherService.cs" />
+    <EmbeddedResource Include="CrimeForm.resx">
+      <DependentUpon>CrimeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
