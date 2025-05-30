@@ -16,5 +16,15 @@ namespace WeatherCrimeAnalyzer
         {
             InitializeComponent();
         }
+
+        private void btnCrimeForm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnWeatherForm_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

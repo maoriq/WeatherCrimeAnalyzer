@@ -41,16 +41,18 @@
             this.btnCrimeForm.TabIndex = 0;
             this.btnCrimeForm.Text = "Криминал";
             this.btnCrimeForm.UseVisualStyleBackColor = false;
+            this.btnCrimeForm.Click += new System.EventHandler(this.btnCrimeForm_Click);
             // 
             // btnWeatherForm
             // 
             this.btnWeatherForm.BackColor = System.Drawing.Color.LavenderBlush;
-            this.btnWeatherForm.Location = new System.Drawing.Point(293, 237);
+            this.btnWeatherForm.Location = new System.Drawing.Point(293, 241);
             this.btnWeatherForm.Name = "btnWeatherForm";
             this.btnWeatherForm.Size = new System.Drawing.Size(180, 72);
             this.btnWeatherForm.TabIndex = 1;
             this.btnWeatherForm.Text = "Погода";
             this.btnWeatherForm.UseVisualStyleBackColor = false;
+            this.btnWeatherForm.Click += new System.EventHandler(this.btnWeatherForm_Click);
             // 
             // Form1
             // 
