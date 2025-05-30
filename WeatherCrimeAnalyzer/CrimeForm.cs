@@ -13,7 +13,7 @@ namespace WeatherCrimeAnalyzer
 {
     public partial class CrimeForm : Form
     {
-        public CrimeForm()
+        public CrimeForm()  
         {
             InitializeComponent();
         }
@@ -109,9 +109,36 @@ namespace WeatherCrimeAnalyzer
         }
 
         private void btnForecast_Click(object sender, EventArgs e)
-        {
+        { 
+                chart1.Series.Clear();
+
+                string type = "Theft";
+                int n = int.Parse(textBoxN.Text);
+
+                var values = crimes.Select(c => c.CrimeByType[type]).ToList();
+                var years = crimes.Select(c => c.Year).ToList();
+
+                var series = chart1.Series.Add(type);
+                series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+
+                for (int i = 0; i < years.Count; i++)
+                {
+                    series.Points.AddXY(years[i], values[i]);
+                }
+
+                var forecast = CalculateMovingAverage(values, n, years.First());
+
+                var forecastSeries = chart1.Series.Add("Прогноз");
+                forecastSeries.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                forecastSeries.Color = System.Drawing.Color.Red;
+
+                foreach (var point in forecast)
+                {
+                    forecastSeries.Points.AddXY(point.year, point.value);
+                }
+            }
 
         }
 
     }
-}
+
